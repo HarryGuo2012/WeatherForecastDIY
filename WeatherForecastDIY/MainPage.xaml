@@ -8,7 +8,32 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+    <Grid RequestedTheme="Dark">
+        <Pivot Title="{Binding City}">
+            <PivotItem Header="今日">
+                <StackPanel x:Name="TodayStackPanel" Orientation="Horizontal">
+                    <StackPanel x:Name="TodayWeatherStackPanel" Height="Auto" Width="15" Orientation="Vertical">
+                        <TextBlock Text="天气  " TextWrapping="Wrap" Height="60" Width="Auto" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding Weather}" TextWrapping="Wrap" Height="Auto" Width="Auto" FontSize="15"></TextBlock> 
+                    </StackPanel>
+                    <StackPanel x:Name="TodayWindStackPanel" Height="Auto" Width="15" Orientation="Vertical">
+                        <TextBlock Text="风力  " TextWrapping="Wrap" Height="60" Width="Auto" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding Wind}" TextWrapping="Wrap" Height="Auto" Width="Auto" FontSize="15"></TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="TodayMaxTemStackPanel" Height="Auto" Width="15" Orientation="Vertical">
+                        <TextBlock Text="最高温 " TextWrapping="Wrap" Height="60" Width="Auto" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding MaxTemperature}" TextWrapping="Wrap" Height="Auto" Width="Auto" FontSize="15"></TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="TodayMinTemStackPanel" Height="Auto" Width="15" Orientation="Vertical">
+                        <TextBlock Text="最低温 " TextWrapping="Wrap" Height="60" Width="Auto" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding MinTemperature}" TextWrapping="Wrap" Height="Auto" Width="Auto" FontSize="15"></TextBlock>
+                    </StackPanel>
+                    <TextBlock x:Name="CurrentTemperature" Height="180" Width="180" Text="{Binding CurrentTemperature}" VerticalAlignment="Top" FontSize="100" FontStyle="Normal"></TextBlock>
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Header="每天">
+                
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
