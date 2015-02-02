@@ -7,6 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Setting" Label="设置"/>
+            <AppBarButton Icon="SolidStar" Label="为我打分"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid>
         <Pivot Title="{Binding City}">
@@ -36,7 +42,7 @@
                     <ListBox x:Name="EverydayWeatherListBox">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Height="60" Width="Auto" Margin="0,15,0,0" Orientation="Horizontal">
+                                <StackPanel Height="60" Width="Auto" Margin="0,0,0,15" Orientation="Horizontal">
                                     <TextBlock Text="{Binding Date}" Width="60" FontSize="30"></TextBlock>
                                     <Image Source="{Binding DayPictureUrl}" Width="60" Height="Auto"></Image>
                                     <TextBlock Text="{Binding Temperature}" Width="60" Height="Auto"></TextBlock>
@@ -47,5 +53,6 @@
                 </Grid>
             </PivotItem>
         </Pivot>
+        
     </Grid>
 </Page>
