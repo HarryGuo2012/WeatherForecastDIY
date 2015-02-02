@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid RequestedTheme="Dark">
+    <Grid>
         <Pivot Title="{Binding City}">
             <PivotItem Header="今日">
                 <StackPanel x:Name="TodayStackPanel" Orientation="Horizontal">
@@ -32,7 +32,19 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="每天">
-                
+                <Grid x:Name="EverydayWeatherGrid">
+                    <ListBox x:Name="EverydayWeatherListBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Height="60" Width="Auto" Margin="0,15,0,0" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Date}" Width="60" FontSize="30"></TextBlock>
+                                    <Image Source="{Binding DayPictureUrl}" Width="60" Height="Auto"></Image>
+                                    <TextBlock Text="{Binding Temperature}" Width="60" Height="Auto"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
