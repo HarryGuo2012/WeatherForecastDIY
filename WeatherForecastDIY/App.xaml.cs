@@ -35,6 +35,7 @@ namespace WeatherForecastDIY
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            
         }
 
         /// <summary>
