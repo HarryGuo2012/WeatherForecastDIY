@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace WeatherForecastDIY
 {
     /// <summary>
     /// 天气预报数据类
     /// </summary>
-    class ForecastPeriod
+    class ForecastPeriod:INotifyPropertyChanged
     {
         private string weather;//天气
         private string wind;//风力
@@ -23,7 +24,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != weather)
+                {
                     weather = value;
+                    OnpropertyChanged("Weather");
+                }
             }
             get
             {
@@ -35,7 +39,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != wind)
+                {
                     wind = value;
+                    OnpropertyChanged("Wind");
+                }
             }
             get
             {
@@ -47,7 +54,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != maxTemperature)
+                {
                     maxTemperature = value;
+                    OnpropertyChanged("MaxTemperature");
+                }
             }
             get
             {
@@ -60,7 +70,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != minTemperature)
+                {
                     minTemperature = value;
+                    OnpropertyChanged("MinTemperature");
+                }
             }
             get
             {
@@ -73,7 +86,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != date)
+                {
                     date = value;
+                    OnpropertyChanged("Date");
+                }
             }
             get
             {
@@ -85,7 +101,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (dayPictureUrl != value)
+                {
                     dayPictureUrl = value;
+                    OnpropertyChanged("DayPictureUrl");
+                }
             }
             get
             {
@@ -97,7 +116,10 @@ namespace WeatherForecastDIY
             set
             {
                 if (value != temperature)
+                {
                     temperature = value;
+                    OnpropertyChanged("Temperature");
+                }
             }
             get
             {
@@ -109,6 +131,8 @@ namespace WeatherForecastDIY
         /// </summary>
         private void analysisTemperature()
         {
+            if (Temperature == null)
+                return;
             int p = -1;//波浪号的位置
             for (int i = 0; i < Temperature.Length; i++) 
                 if (Temperature[i] == '~') { p = i; break; }
@@ -119,8 +143,17 @@ namespace WeatherForecastDIY
             }
             else
             {
-                minTemperature = Temperature.Substring(0, p) + "℃";
-                maxTemperature = Temperature.Substring(p + 1, Temperature.Length - p - 1);
+                maxTemperature = Temperature.Substring(0, p) + "℃";
+                minTemperature = Temperature.Substring(p + 1, Temperature.Length - p - 1);
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnpropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if(handler!=null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
             }
         }
     }

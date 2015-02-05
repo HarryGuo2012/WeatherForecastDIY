@@ -9,9 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Setting" Label="设置"/>
-            <AppBarButton Icon="Refresh" Label="刷新"/>
-            <AppBarButton Icon="SolidStar" Label="为我打分"/>
+            <AppBarButton x:Name="Setting" Icon="Setting" Label="设置"/>
+            <AppBarButton x:Name="Refresh" Icon="Refresh" Label="刷新" Click="Refresh_Click"/>
+            <AppBarButton x:Name="SolidStar" Icon="SolidStar" Label="为我打分"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -40,7 +40,7 @@
             </PivotItem>
             <PivotItem Header="每天">
                 <Grid x:Name="EverydayWeatherGrid">
-                    <ListBox x:Name="EverydayWeatherListBox">
+                    <ListBox x:Name="EverydayWeatherListBox" Background="White">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Height="60" Width="Auto" Margin="0,0,0,15" Orientation="Horizontal">
@@ -54,6 +54,7 @@
                 </Grid>
             </PivotItem>
         </Pivot>
-        
+        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Visibility="{Binding Vis}" IsIndeterminate="True" Width="399.999969482422"/>
+
     </Grid>
 </Page>

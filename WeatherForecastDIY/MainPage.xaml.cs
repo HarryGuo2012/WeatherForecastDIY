@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=391641 上有介绍
 
@@ -22,11 +23,41 @@ namespace WeatherForecastDIY
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private string city;
+        public string City
+        {
+            set
+            {
+                if(value!=city)
+                {
+                    city = value;
+                }
+            }
+            get
+            {
+                return city;
+            }
+        }
         public MainPage()
         {
             this.InitializeComponent();
-
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            getCity();
+            ReportForecast();
+        }
+        private void ReportForecast()
+        {
+            Forecast forecast = new Forecast(City);
+            forecast.getForecast();
+            DataContext = forecast;
+            EverydayWeatherListBox.ItemsSource = forecast.ForecastList;
+        }
+        private void getCity()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (!localSettings.Values.ContainsKey("City"))
+                localSettings.Values["City"] = "成都";
+            City = localSettings.Values["City"].ToString();
         }
 
         /// <summary>
@@ -43,6 +74,11 @@ namespace WeatherForecastDIY
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed 事件。
             // 如果使用由某些模板提供的 NavigationHelper，
             // 则系统会为您处理该事件。
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            ReportForecast();
         }
     }
 }

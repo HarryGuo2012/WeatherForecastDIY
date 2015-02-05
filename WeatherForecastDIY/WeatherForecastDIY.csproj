@@ -87,7 +87,6 @@
     </Compile>
     <Compile Include="Forecast.cs" />
     <Compile Include="ForecastPeriod.cs" />
-    <Compile Include="getCity.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
